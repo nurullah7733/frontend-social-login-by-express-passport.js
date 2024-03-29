@@ -2,9 +2,7 @@ import React from "react";
 import axiosInstance from "../../utils/axios/axios";
 import { sessionHelper } from "../../utils/sessionHelper/sessionHelper";
 import { Link } from "react-router-dom";
-const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
-const url = "http://localhost:4000";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const LoginPage = () => {
   const [email, setEmail] = React.useState("");
@@ -22,12 +20,15 @@ const LoginPage = () => {
   };
 
   const googleSignIn = async (): Promise<void> => {
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=${encodeURIComponent(
-      url + "/auth/google/callback"
-    )}&scope=email profile&client_id=${googleClientId}`;
+    // window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=${encodeURIComponent(
+    //   url + "/auth/google/callback"
+    // )}&scope=email profile&client_id=${googleClientId}`;
+    window.location.href = `${backendUrl}/auth/google`;
   };
 
-  const facebookSignIn = () => {};
+  const facebookSignIn = () => {
+    window.location.href = `${backendUrl}/auth/facebook`;
+  };
 
   return (
     <div className="bg-gray-100">
